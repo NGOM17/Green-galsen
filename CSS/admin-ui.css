@@ -1,0 +1,374 @@
+/*==================================================
+    GREEN GALSEN — BACK-OFFICE ADMIN
+    (dashboard, produits, utilisateurs, commandes...)
+==================================================*/
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+.au-body{
+    margin:0;
+    font-family:'Poppins',sans-serif;
+    background:#F4F7F5;
+    color:#1F2937;
+}
+.au-body *{ box-sizing:border-box; }
+
+:root{
+    --au-primary:#2E7D32;
+    --au-secondary:#43A047;
+    --au-dark:#1F2937;
+    --au-slate:#374151;
+    --au-light:#F4F7F5;
+    --au-gray:#8A9295;
+    --au-white:#fff;
+    --au-sun:#F4B942;
+    --au-danger:#E53935;
+    --au-info:#2F9BB0;
+    --au-shadow:0 10px 30px rgba(31,41,55,.08);
+}
+
+/*==================================================
+    NAVIGATION
+==================================================*/
+
+.au-nav{
+    position:sticky;
+    top:0;
+    z-index:30;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:.9rem 2rem;
+    background:linear-gradient(155deg, #1B5E20 0%, var(--au-primary) 60%, var(--au-secondary) 130%);
+    box-shadow:0 4px 16px rgba(0,0,0,.12);
+}
+
+.au-nav .au-logo{
+    display:flex;
+    align-items:center;
+    gap:.6rem;
+    color:#fff;
+    font-weight:700;
+    font-size:1.1rem;
+    text-decoration:none;
+}
+.au-nav .au-logo i{
+    background:rgba(255,255,255,.18);
+    padding:.5rem;
+    border-radius:10px;
+    font-size:.95rem;
+}
+.au-nav .au-logo span{ color:var(--au-sun); }
+
+.au-nav ul{
+    list-style:none;
+    display:flex;
+    align-items:center;
+    gap:.2rem;
+    margin:0;
+    padding:0;
+}
+.au-nav ul li a{
+    display:flex;
+    align-items:center;
+    gap:.5rem;
+    text-decoration:none;
+    color:rgba(255,255,255,.85);
+    font-size:.87rem;
+    font-weight:500;
+    padding:.55rem 1rem;
+    border-radius:9px;
+    transition:background .2s ease, color .2s ease;
+    white-space:nowrap;
+}
+.au-nav ul li a:hover,
+.au-nav ul li a.active{
+    background:rgba(255,255,255,.16);
+    color:#fff;
+}
+.au-nav ul li a.au-logout{ color:#FFD1CF; }
+.au-nav ul li a.au-logout:hover{ background:rgba(229,57,53,.25); color:#fff; }
+
+.au-burger{ display:none; }
+
+@media (max-width:980px){
+    .au-nav ul{
+        position:fixed;
+        inset:60px 0 auto 0;
+        flex-direction:column;
+        align-items:stretch;
+        background:#1B5E20;
+        padding:.6rem;
+        transform:translateY(-140%);
+        transition:transform .25s ease;
+    }
+    .au-nav ul.open{ transform:translateY(0); }
+    .au-burger{
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        width:38px;
+        height:38px;
+        border-radius:9px;
+        background:rgba(255,255,255,.15);
+        border:none;
+        color:#fff;
+        font-size:1.05rem;
+        cursor:pointer;
+    }
+}
+
+/*==================================================
+    CONTENU
+==================================================*/
+
+.au-main{
+    max-width:1180px;
+    margin:0 auto;
+    padding:2.2rem 1.5rem 4rem;
+}
+
+.au-page-header{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:1rem;
+    margin-bottom:1.8rem;
+}
+.au-page-header h1{
+    font-size:1.6rem;
+    font-weight:700;
+    color:var(--au-dark);
+    margin-bottom:.3rem;
+}
+.au-page-header p{
+    font-size:.9rem;
+    color:var(--au-gray);
+    max-width:520px;
+}
+.au-page-header .au-actions{
+    display:flex;
+    gap:.6rem;
+    flex-wrap:wrap;
+}
+
+/* ---------- Boutons ---------- */
+
+.au-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:.5rem;
+    border:none;
+    border-radius:10px;
+    padding:.65rem 1.1rem;
+    font-family:'Poppins',sans-serif;
+    font-weight:600;
+    font-size:.85rem;
+    cursor:pointer;
+    text-decoration:none;
+    transition:transform .15s ease, box-shadow .15s ease, opacity .15s ease;
+}
+.au-btn:hover{ transform:translateY(-2px); }
+.au-btn-primary{
+    background:linear-gradient(135deg, var(--au-primary), var(--au-secondary));
+    color:#fff;
+    box-shadow:0 10px 20px rgba(46,125,50,.2);
+}
+.au-btn-outline{
+    background:#fff;
+    color:var(--au-dark);
+    border:1.5px solid #E1E7E2;
+}
+.au-btn-outline:hover{ border-color:var(--au-primary); color:var(--au-primary); }
+
+.au-btn-sm{ padding:.4rem .8rem; font-size:.78rem; border-radius:8px; }
+.au-btn-info{ background:#E4F6F8; color:var(--au-info); }
+.au-btn-info:hover{ background:var(--au-info); color:#fff; }
+.au-btn-danger{ background:#FDECEC; color:var(--au-danger); }
+.au-btn-danger:hover{ background:var(--au-danger); color:#fff; }
+.au-btn-success{ background:#E9F7EC; color:#1E7B34; }
+.au-btn-success:hover{ background:var(--au-primary); color:#fff; }
+.au-btn-warning{ background:var(--au-sun); color:#5A4300; }
+.au-btn-warning:hover{ opacity:.88; }
+.au-btn-link{
+    background:none;
+    color:var(--au-gray);
+    padding:.65rem .4rem;
+    box-shadow:none;
+}
+.au-btn-link:hover{ color:var(--au-dark); transform:none; }
+
+/* ---------- Cartes statistiques ---------- */
+
+.au-stats-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:1.2rem;
+    margin-bottom:2rem;
+}
+@media (max-width:820px){ .au-stats-grid{ grid-template-columns:1fr; } }
+
+.au-stat-card{
+    background:var(--au-white);
+    border-radius:18px;
+    padding:1.6rem;
+    box-shadow:var(--au-shadow);
+    display:flex;
+    align-items:center;
+    gap:1rem;
+}
+.au-stat-card .au-stat-icon{
+    width:52px;
+    height:52px;
+    min-width:52px;
+    border-radius:14px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:1.3rem;
+    color:#fff;
+    background:linear-gradient(135deg, var(--au-primary), var(--au-secondary));
+}
+.au-stat-card.stat-revenue .au-stat-icon{ background:linear-gradient(135deg, #E58E26, var(--au-sun)); }
+.au-stat-card.stat-products .au-stat-icon{ background:linear-gradient(135deg, #2F9BB0, #57C2D6); }
+
+.au-stat-card h3{
+    font-size:.8rem;
+    font-weight:600;
+    color:var(--au-gray);
+    text-transform:uppercase;
+    letter-spacing:.4px;
+    margin-bottom:.25rem;
+}
+.au-stat-card .au-stat-value{
+    font-size:1.6rem;
+    font-weight:700;
+    color:var(--au-dark);
+}
+
+/* ---------- Cartes / sections ---------- */
+
+.au-card{
+    background:var(--au-white);
+    border-radius:18px;
+    box-shadow:var(--au-shadow);
+    padding:1.8rem;
+}
+
+/* ---------- Tableaux ---------- */
+
+.au-table-wrap{
+    background:var(--au-white);
+    border-radius:18px;
+    box-shadow:var(--au-shadow);
+    overflow-x:auto;
+}
+table.au-table{
+    width:100%;
+    border-collapse:collapse;
+    font-size:.88rem;
+    min-width:560px;
+}
+table.au-table thead th{
+    text-align:left;
+    padding:1rem 1.2rem;
+    background:#F4F7F5;
+    color:var(--au-gray);
+    font-weight:600;
+    font-size:.78rem;
+    text-transform:uppercase;
+    letter-spacing:.4px;
+    border-bottom:1px solid #ECEFEC;
+}
+table.au-table tbody td{
+    padding:.95rem 1.2rem;
+    border-bottom:1px solid #F0F3F1;
+    color:var(--au-dark);
+    vertical-align:middle;
+}
+table.au-table tbody tr:last-child td{ border-bottom:none; }
+table.au-table tbody tr:hover{ background:#FAFDFB; }
+table.au-table td.au-actions-cell{
+    display:flex;
+    gap:.5rem;
+    flex-wrap:wrap;
+}
+
+.au-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:.35rem;
+    padding:.3rem .7rem;
+    border-radius:999px;
+    font-size:.76rem;
+    font-weight:600;
+}
+.au-badge-pending{ background:#FFF3D9; color:#946200; }
+.au-badge-delivered{ background:#E9F7EC; color:#1E7B34; }
+.au-badge-role{ background:#E7F0FD; color:#2255A4; }
+
+.au-empty{
+    text-align:center;
+    padding:3rem 1.5rem;
+    color:var(--au-gray);
+}
+.au-empty i{ font-size:2rem; color:#D8DEDA; margin-bottom:.8rem; display:block; }
+
+/* ---------- Formulaires (détails / modification) ---------- */
+
+.au-detail-list{ list-style:none; margin:0; padding:0; }
+.au-detail-list li{
+    display:flex;
+    align-items:center;
+    gap:.8rem;
+    padding:.9rem 0;
+    border-bottom:1px solid #F0F3F1;
+    font-size:.92rem;
+}
+.au-detail-list li:last-child{ border-bottom:none; }
+.au-detail-list i{
+    width:34px;
+    height:34px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:var(--au-light);
+    color:var(--au-primary);
+    border-radius:10px;
+}
+.au-detail-list .label{ color:var(--au-gray); min-width:100px; }
+.au-detail-list .value{ font-weight:600; }
+
+.au-form-group{ margin-bottom:1.2rem; }
+.au-form-group label{
+    display:block;
+    font-size:.82rem;
+    font-weight:600;
+    color:var(--au-dark);
+    margin-bottom:.4rem;
+}
+.au-form-group input,
+.au-form-group select{
+    width:100%;
+    padding:.75rem .9rem;
+    border:1.5px solid #E1E7E2;
+    border-radius:10px;
+    font-family:'Poppins',sans-serif;
+    font-size:.9rem;
+    background:#FBFDFB;
+    transition:border-color .2s ease, box-shadow .2s ease;
+}
+.au-form-group input:focus,
+.au-form-group select:focus{
+    outline:none;
+    border-color:var(--au-secondary);
+    box-shadow:0 0 0 4px rgba(67,160,71,.14);
+}
+
+.au-form-actions{
+    display:flex;
+    align-items:center;
+    gap:1rem;
+    margin-top:1.4rem;
+}

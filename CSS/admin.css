@@ -1,0 +1,112 @@
+/* * admin.css 
+ * Styles dédiés à l'interface d'administration
+ */
+
+/* 1. Variables globales (Couleurs et espacements) */
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #34495e;
+    --accent-color: #3498db;
+    --success-color: #27ae60;
+    --error-color: #e74c3c;
+    --bg-color: #f4f7f6;
+    --text-color: #333;
+    --border-color: #ddd;
+    --sidebar-width: 250px;
+}
+
+/* 2. Reset de base et structure */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    display: flex;
+}
+
+/* 3. Sidebar (Menu latéral) */
+.admin-sidebar {
+    width: var(--sidebar-width);
+    background-color: var(--primary-color);
+    height: 100vh;
+    color: white;
+    position: fixed;
+}
+
+.admin-sidebar h2 {
+    text-align: center;
+    padding: 20px;
+    font-size: 1.2rem;
+}
+
+.admin-sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.admin-sidebar ul li a {
+    color: #bdc3c7;
+    text-decoration: none;
+    display: block;
+    padding: 15px 20px;
+    transition: 0.3s;
+}
+
+.admin-sidebar ul li a:hover {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+/* 4. Contenu principal */
+.admin-content {
+    margin-left: var(--sidebar-width);
+    padding: 20px;
+    width: 100%;
+}
+
+/* 5. Cartes et Tableaux */
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+th {
+    background-color: #f8f9fa;
+}
+
+/* 6. Boutons et alertes */
+.btn {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-primary { background-color: var(--accent-color); color: white; }
+.btn-success { background-color: var(--success-color); color: white; }
+.btn-error { background-color: var(--error-color); color: white; }
+
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+}
+
+.alert-success { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }

@@ -1,0 +1,433 @@
+/*==================================================
+    GREEN GALSEN — PAGES D'AUTHENTIFICATION
+    (connexion / inscription client & admin)
+==================================================*/
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+.auth-body{
+    margin:0;
+    padding:0;
+    font-family:'Poppins',sans-serif;
+    box-sizing:border-box;
+}
+.auth-body *{ box-sizing:border-box; }
+
+:root{
+    --ag-primary:#2E7D32;
+    --ag-secondary:#43A047;
+    --ag-light:#F5FFF4;
+    --ag-dark:#1F2937;
+    --ag-gray:#8A9295;
+    --ag-sun:#F4B942;
+    --ag-white:#ffffff;
+    --ag-shadow:0 20px 50px rgba(31,41,55,.10);
+}
+
+/*==================================================
+    STRUCTURE : ÉCRAN PARTAGÉ EN DEUX
+==================================================*/
+
+.auth-wrapper{
+    min-height:100vh;
+    display:flex;
+    background:var(--ag-white);
+}
+
+/* ---------- Panneau visuel (gauche) ---------- */
+
+.auth-visual{
+    position:relative;
+    flex:1 1 46%;
+    min-height:100vh;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    padding:3.2rem 3rem;
+    color:var(--ag-white);
+    background:linear-gradient(155deg, #1B5E20 0%, var(--ag-primary) 45%, var(--ag-secondary) 100%);
+}
+
+.auth-visual .blob{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(2px);
+    opacity:.16;
+    background:var(--ag-white);
+    animation:ag-float 9s ease-in-out infinite;
+}
+.auth-visual .blob-1{ width:340px; height:340px; top:-120px; left:-90px; animation-delay:0s;}
+.auth-visual .blob-2{ width:220px; height:220px; bottom:-60px; right:-60px; opacity:.12; animation-delay:2s;}
+.auth-visual .blob-3{ width:140px; height:140px; top:45%; right:8%; opacity:.10; animation-delay:4s;}
+
+@keyframes ag-float{
+    0%,100%{ transform:translateY(0) scale(1); }
+    50%{ transform:translateY(-18px) scale(1.04); }
+}
+
+.auth-visual .leaf-pattern{
+    position:absolute;
+    inset:0;
+    background-image:radial-gradient(rgba(255,255,255,.07) 1.5px, transparent 1.5px);
+    background-size:26px 26px;
+    pointer-events:none;
+}
+
+.auth-visual .ag-brand{
+    position:relative;
+    z-index:2;
+    display:flex;
+    align-items:center;
+    gap:.6rem;
+    font-size:1.5rem;
+    font-weight:700;
+    letter-spacing:.5px;
+}
+.auth-visual .ag-brand span{ color:var(--ag-sun); }
+.auth-visual .ag-brand i{
+    background:rgba(255,255,255,.15);
+    padding:.5rem;
+    border-radius:12px;
+    font-size:1.1rem;
+}
+
+.auth-visual .ag-hero{
+    position:relative;
+    z-index:2;
+    max-width:420px;
+}
+.auth-visual .ag-hero .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:.5rem;
+    background:rgba(255,255,255,.14);
+    border:1px solid rgba(255,255,255,.25);
+    padding:.35rem .9rem;
+    border-radius:999px;
+    font-size:.78rem;
+    font-weight:500;
+    letter-spacing:.3px;
+    margin-bottom:1.4rem;
+}
+.auth-visual .ag-hero h1{
+    font-size:2.35rem;
+    font-weight:700;
+    line-height:1.25;
+    margin-bottom:1rem;
+}
+.auth-visual .ag-hero h1 em{
+    font-style:normal;
+    color:var(--ag-sun);
+}
+.auth-visual .ag-hero p{
+    font-size:.98rem;
+    color:rgba(255,255,255,.85);
+    line-height:1.7;
+}
+
+.auth-visual .ag-features{
+    position:relative;
+    z-index:2;
+    display:flex;
+    flex-direction:column;
+    gap:1rem;
+    margin-top:2.2rem;
+}
+.auth-visual .ag-features li{
+    list-style:none;
+    display:flex;
+    align-items:center;
+    gap:.8rem;
+    font-size:.9rem;
+    color:rgba(255,255,255,.92);
+}
+.auth-visual .ag-features i{
+    width:34px;
+    height:34px;
+    min-width:34px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:rgba(255,255,255,.15);
+    border-radius:10px;
+    font-size:.85rem;
+    color:var(--ag-sun);
+}
+
+.auth-visual .ag-footnote{
+    position:relative;
+    z-index:2;
+    font-size:.78rem;
+    color:rgba(255,255,255,.6);
+}
+
+/* ---------- Panneau formulaire (droite) ---------- */
+
+.auth-form-side{
+    flex:1 1 54%;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:2.5rem 1.5rem;
+    background:var(--ag-light);
+}
+
+.auth-card{
+    width:100%;
+    max-width:420px;
+    background:var(--ag-white);
+    border-radius:22px;
+    padding:2.6rem 2.4rem;
+    box-shadow:var(--ag-shadow);
+    animation:ag-rise .55s ease both;
+}
+
+@keyframes ag-rise{
+    from{ opacity:0; transform:translateY(18px); }
+    to{ opacity:1; transform:translateY(0); }
+}
+
+.auth-card .ag-icon-badge{
+    width:52px;
+    height:52px;
+    border-radius:15px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(135deg, var(--ag-primary), var(--ag-secondary));
+    color:var(--ag-white);
+    font-size:1.3rem;
+    margin-bottom:1.3rem;
+    box-shadow:0 10px 20px rgba(46,125,50,.25);
+}
+
+.auth-card h2{
+    font-size:1.55rem;
+    font-weight:700;
+    color:var(--ag-dark);
+    margin-bottom:.4rem;
+}
+
+.auth-card .ag-subtitle{
+    font-size:.9rem;
+    color:var(--ag-gray);
+    margin-bottom:1.8rem;
+}
+
+.ag-form-group{
+    position:relative;
+    margin-bottom:1.15rem;
+}
+.ag-form-group label{
+    display:block;
+    font-size:.8rem;
+    font-weight:600;
+    color:var(--ag-dark);
+    margin-bottom:.4rem;
+}
+.ag-form-group .ag-input-icon{
+    position:absolute;
+    left:14px;
+    top:calc(50% + 8px);
+    transform:translateY(-50%);
+    color:var(--ag-gray);
+    font-size:.9rem;
+}
+.ag-form-group input{
+    width:100%;
+    padding:.78rem .9rem .78rem 2.5rem;
+    border:1.5px solid #E7ECE7;
+    border-radius:12px;
+    font-family:'Poppins',sans-serif;
+    font-size:.92rem;
+    color:var(--ag-dark);
+    background:#FBFDFB;
+    transition:border-color .2s ease, box-shadow .2s ease, background .2s ease;
+}
+.ag-form-group input:focus{
+    outline:none;
+    border-color:var(--ag-secondary);
+    background:var(--ag-white);
+    box-shadow:0 0 0 4px rgba(67,160,71,.14);
+}
+
+.ag-row-between{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:.6rem;
+}
+.ag-two-cols{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:1rem;
+}
+
+.btn-auth{
+    width:100%;
+    padding:.9rem;
+    border:none;
+    border-radius:12px;
+    background:linear-gradient(135deg, var(--ag-primary), var(--ag-secondary));
+    color:var(--ag-white);
+    font-family:'Poppins',sans-serif;
+    font-weight:600;
+    font-size:.96rem;
+    letter-spacing:.2px;
+    cursor:pointer;
+    margin-top:.4rem;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:.55rem;
+    transition:transform .18s ease, box-shadow .18s ease, opacity .18s ease;
+    box-shadow:0 12px 24px rgba(46,125,50,.22);
+}
+.btn-auth:hover{
+    transform:translateY(-2px);
+    box-shadow:0 16px 30px rgba(46,125,50,.3);
+}
+.btn-auth:active{ transform:translateY(0); }
+
+.ag-switch{
+    text-align:center;
+    margin-top:1.6rem;
+    font-size:.88rem;
+    color:var(--ag-gray);
+}
+.ag-switch a{
+    color:var(--ag-primary);
+    font-weight:600;
+    text-decoration:none;
+}
+.ag-switch a:hover{ text-decoration:underline; }
+
+.ag-back-home{
+    display:inline-flex;
+    align-items:center;
+    gap:.4rem;
+    font-size:.82rem;
+    color:var(--ag-gray);
+    text-decoration:none;
+    margin-bottom:1.4rem;
+}
+.ag-back-home:hover{ color:var(--ag-primary); }
+
+.ag-alert{
+    display:flex;
+    align-items:flex-start;
+    gap:.6rem;
+    padding:.8rem 1rem;
+    border-radius:12px;
+    font-size:.85rem;
+    margin-bottom:1.3rem;
+    line-height:1.5;
+}
+.ag-alert-error{
+    background:#FDECEC;
+    color:#B3261E;
+    border:1px solid #F6C7C4;
+}
+.ag-alert-success{
+    background:#E9F7EC;
+    color:#1E7B34;
+    border:1px solid #BFE6C8;
+}
+.ag-alert i{ margin-top:.15rem; }
+
+/* Petit encart discret rappelant qu'un compte de démonstration existe,
+   utile pour la correction du projet, sans polluer le design */
+.ag-demo-hint{
+    margin-top:1.4rem;
+    padding:.7rem .9rem;
+    border-radius:12px;
+    background:#F1F8F1;
+    border:1px dashed #BFDCC2;
+    font-size:.76rem;
+    color:#4B6350;
+    text-align:center;
+}
+.ag-demo-hint strong{ color:var(--ag-primary); }
+
+/*==================================================
+    RESPONSIVE
+==================================================*/
+
+@media (max-width:900px){
+    .auth-visual{ display:none; }
+    .auth-form-side{ min-height:100vh; }
+}
+
+@media (max-width:480px){
+    .auth-card{ padding:2rem 1.5rem; border-radius:18px; }
+    .ag-two-cols{ grid-template-columns:1fr; gap:0; }
+}
+
+/*==================================================
+    PAGES DE STATUT
+    (résultat d'inscription, message de connexion...)
+==================================================*/
+
+.status-page{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:2rem 1.5rem;
+    background:linear-gradient(155deg, #1B5E20 0%, var(--ag-primary) 45%, var(--ag-secondary) 100%);
+}
+
+.status-card{
+    width:100%;
+    max-width:440px;
+    background:var(--ag-white);
+    border-radius:22px;
+    padding:2.8rem 2.4rem;
+    text-align:center;
+    box-shadow:var(--ag-shadow);
+    animation:ag-rise .55s ease both;
+}
+
+.status-card .status-icon{
+    width:72px;
+    height:72px;
+    margin:0 auto 1.4rem;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:1.9rem;
+    color:var(--ag-white);
+}
+.status-icon.success{ background:linear-gradient(135deg, var(--ag-primary), var(--ag-secondary)); }
+.status-icon.error{ background:linear-gradient(135deg, #E53935, #EF5350); }
+.status-icon.info{ background:linear-gradient(135deg, #2E7D32, #F4B942); }
+
+.status-card h2{
+    font-size:1.4rem;
+    font-weight:700;
+    color:var(--ag-dark);
+    margin-bottom:.6rem;
+}
+.status-card p{
+    font-size:.92rem;
+    color:var(--ag-gray);
+    line-height:1.6;
+    margin-bottom:1.6rem;
+}
+
+.status-card .btn-auth{
+    text-decoration:none;
+}
+.status-card .status-link{
+    display:inline-flex;
+    align-items:center;
+    gap:.5rem;
+    font-size:.85rem;
+    color:var(--ag-gray);
+    text-decoration:none;
+    margin-top:1rem;
+}
+.status-card .status-link:hover{ color:var(--ag-primary); }
